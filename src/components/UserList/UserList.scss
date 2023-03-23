@@ -1,9 +1,15 @@
 .button-wrapper {
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
    gap: 1rem;
    padding-block: 1rem;
+
+   > :first-child {
+      justify-self: end;
+   }
+   > :last-child {
+      justify-self: start;
+   }
 }
 
 .button {
@@ -26,5 +32,26 @@
 
    @media (prefers-color-scheme: light) {
       background-color: #f9f9f9;
+   }
+}
+
+.card-grid {
+   padding-inline: 1rem;
+
+   display: grid;
+   grid-auto-flow: row;
+   grid-template-columns: 1fr;
+   gap: 1rem;
+
+   @media (min-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   @media (min-width: 1100px) {
+      grid-template-columns: repeat(3, 1fr);
+   }
+
+   @media (min-width: 1600px) {
+      grid-template-columns: repeat(4, 1fr);
    }
 }
