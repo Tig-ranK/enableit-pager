@@ -2,30 +2,25 @@
    border: 1px solid #d8d8d8;
    border-radius: 4px;
    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
-   padding: 16px;
-   width: 100%;
+   padding: .8rem 2.5rem .8rem 2rem;
+   width: fit-content;
 
    h3 {
       font-size: 24px;
-      margin-bottom: 8px;
+      margin-block: 8px;
    }
 
    p {
       font-size: 16px;
-      margin: 0;
+      display: flex;
+      align-items: center;
+      margin-block: 1rem;
+      a {
+         display: block;
+      }
    }
 
-   .user-info {
-      display: flex;
-      flex-direction: column;
-      margin-top: 16px;
-
-      p {
-         margin-bottom: 8px;
-
-         strong {
-            font-weight: 700;
-         }
-      }
+   svg {
+      margin-right: .75rem;
    }
 }

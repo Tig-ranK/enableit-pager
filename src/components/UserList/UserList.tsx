@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import UserCard from "./UserCard";
 import { User } from "./types";
+import "./UserList.scss";
 
-export const UserList = () => {
+export const UserList: FC<{}> = () => {
    const [users, setUsers] = useState<User[]>([]);
    const [userId, setUserId] = useState<number>(0);
 
@@ -28,14 +29,20 @@ export const UserList = () => {
 
    return (
       <div>
-         <button onClick={handlePrevious} disabled={userId === 0}>
-            Previous
-         </button>
-         <button onClick={handleNext}>Next</button>
+         <div className="button-wrapper">
+            <button
+               className="button"
+               onClick={handlePrevious}
+               disabled={userId === 0}
+            >
+               Previous
+            </button>
+            <button className="button" onClick={handleNext}>
+               Next
+            </button>
+         </div>
          <ul>
-            {users.map((user) => (
-               <UserCard key={user.ID} user={user} />
-            ))}
+            {users.map((user) => <UserCard key={user.ID} user={user} />)[0]}
          </ul>
       </div>
    );

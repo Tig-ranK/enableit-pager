@@ -1,6 +1,12 @@
+// Types
 import { FC } from "react";
-import "./UserCard.scss";
 import { User } from "./types";
+// Styles
+import "./UserCard.scss";
+// SVG
+import EmailLogo from "../../assets/mail.svg";
+import PhoneLogo from "../../assets/phone.svg";
+import JobLogo from "../../assets/briefcase.svg";
 
 const UserCard: FC<{ user: User }> = ({ user }) => {
    const { JobTitle, EmailAddress, FirstNameLastName, Email, Phone, Company } =
@@ -10,22 +16,20 @@ const UserCard: FC<{ user: User }> = ({ user }) => {
       <div className="user-card">
          <h3>{FirstNameLastName}</h3>
          <p>
-            {JobTitle} at {Company}
+            <JobLogo />
+            {JobTitle} @ {Company}
          </p>
-         <div className="user-info">
-            <p>
-               <strong>Email: </strong>
-               {Email}
-            </p>
-            <p>
-               <strong>Phone: </strong>
-               {Phone}
-            </p>
-            <p>
-               <strong>Email Address: </strong>
-               {EmailAddress}
-            </p>
-         </div>
+         <p>
+            <EmailLogo />
+            <div className="email-wrapper">
+               <a href={`mailto:${Email}`}>{Email}</a>
+               <a href={`mailto:${Email}`}>{EmailAddress}</a>
+            </div>
+         </p>
+         <p>
+            <PhoneLogo />
+            <a href={`tel:${Phone}`}>{Phone}</a>
+         </p>
       </div>
    );
 };
