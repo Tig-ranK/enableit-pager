@@ -1,10 +1,15 @@
 import { useState, useEffect, FC } from "react";
-import UserCard from "./UserCard";
 import { User } from "./types";
+// Styles
 import "./UserList.scss";
+// Components
+import { UserCard } from "./UserCard";
+import { NavigationButtons } from "./NavigationButtons";
+import { Loading } from "../Loading";
 
 export const UserList: FC<{}> = () => {
    const [users, setUsers] = useState<User[]>([]);
+   const [loading, setLoading] = useState<boolean>(true);
    const [userId, setUserId] = useState<number>(0);
 
    useEffect(() => {
@@ -14,6 +19,7 @@ export const UserList: FC<{}> = () => {
          );
          const json = await result.json();
          setUsers(json.users);
+         setLoading(false);
       };
 
       fetchData();
@@ -21,29 +27,33 @@ export const UserList: FC<{}> = () => {
 
    const handlePrevious = () => {
       setUserId((prevUserId) => prevUserId - 10);
+      setLoading(true);
    };
 
    const handleNext = () => {
       setUserId((prevUserId) => prevUserId + 10);
+      setLoading(true);
    };
 
    return (
       <div>
-         <div className="button-wrapper">
-            <button
-               className="button"
-               onClick={handlePrevious}
-               disabled={userId === 0}
-            >
-               Previous
-            </button>
-            <button className="button" onClick={handleNext}>
-               Next
-            </button>
+         <NavigationButtons
+            isPreviousDisabled={userId === 0}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+         />
+         <div className="card-grid">
+            {!loading ? (
+               users.map((user) => <UserCard key={user.ID} user={user} />)
+            ) : (
+               <Loading />
+            )}
          </div>
-         <ul>
-            {users.map((user) => <UserCard key={user.ID} user={user} />)[0]}
-         </ul>
+         <NavigationButtons
+            isPreviousDisabled={userId === 0}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+         />
       </div>
    );
 };

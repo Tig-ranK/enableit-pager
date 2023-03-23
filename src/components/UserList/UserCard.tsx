@@ -8,7 +8,7 @@ import EmailLogo from "../../assets/mail.svg";
 import PhoneLogo from "../../assets/phone.svg";
 import JobLogo from "../../assets/briefcase.svg";
 
-const UserCard: FC<{ user: User }> = ({ user }) => {
+export const UserCard: FC<{ user: User }> = ({ user }) => {
    const { JobTitle, EmailAddress, FirstNameLastName, Email, Phone, Company } =
       user;
 
@@ -21,10 +21,10 @@ const UserCard: FC<{ user: User }> = ({ user }) => {
          </p>
          <p>
             <EmailLogo />
-            <div className="email-wrapper">
+            <span className="email-wrapper">
                <a href={`mailto:${Email}`}>{Email}</a>
                <a href={`mailto:${Email}`}>{EmailAddress}</a>
-            </div>
+            </span>
          </p>
          <p>
             <PhoneLogo />
@@ -33,5 +33,3 @@ const UserCard: FC<{ user: User }> = ({ user }) => {
       </div>
    );
 };
-
-export default UserCard;
