@@ -9,7 +9,7 @@ export const UserList = () => {
    useEffect(() => {
       const fetchData = async () => {
          const result = await fetch(
-            `https://give-me-users-forever.vercel.app/api/users/${userId}/next`
+            `${import.meta.env.VITE_API_URL}${userId}/next`
          );
          const json = await result.json();
          setUsers(json.users);
