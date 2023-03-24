@@ -5,6 +5,8 @@ $ballDistance: 32px;
    margin-inline: auto;
    margin-block: 1rem;
 
+   grid-column: 1 / -1;
+   
    width: $ballSize;
    height: $ballSize;
 
